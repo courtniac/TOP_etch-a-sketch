@@ -1,5 +1,10 @@
+const GRID_SIZE = 960;
+
 function generateGrid(rowCount = 4) {
     const container = document.getElementById("container");
+    container.replaceChildren();
+    container.style.width = `${GRID_SIZE}px`;
+    container.style.height = `${GRID_SIZE}px`;
 
     for (let i = 0; i < rowCount; i++) {
         const row = document.createElement("div");
@@ -8,6 +13,7 @@ function generateGrid(rowCount = 4) {
         for (let i = 0; i < rowCount; i++) {
             let square = document.createElement("div");
             square.classList.add("square");
+            square.style.height = `${GRID_SIZE/rowCount}px`;
 
             square.addEventListener("mouseover", () => {
                 square.classList.add("filled");
@@ -18,6 +24,16 @@ function generateGrid(rowCount = 4) {
 
         container.appendChild(row);
     }
+}
+
+function showPrompt() {
+    const numSquares = prompt("How many squares per side of the grid? Max: 100");
+
+    if (numSquares > 100) {
+        return;
+    }
+    
+    generateGrid(numSquares);
 }
 
 generateGrid();
