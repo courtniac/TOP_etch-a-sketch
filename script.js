@@ -16,7 +16,7 @@ function generateGrid(rowCount = 4) {
             square.style.height = `${GRID_SIZE/rowCount}px`;
 
             square.addEventListener("mouseover", () => {
-                square.classList.add("filled");
+                square.style.backgroundColor = `rgb(${getRandomRGBValue()}, ${getRandomRGBValue()}, ${getRandomRGBValue()})`
             });
 
             row.appendChild(square);
@@ -24,6 +24,10 @@ function generateGrid(rowCount = 4) {
 
         container.appendChild(row);
     }
+}
+
+function getRandomRGBValue() {
+    return Math.random() * 257;
 }
 
 function showPrompt() {
